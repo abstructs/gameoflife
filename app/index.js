@@ -6,7 +6,7 @@ require('./style.css');
 var MainContainer = React.createClass({
   getInitialState: function() {
     return {
-      boardSize: {x: 37, y: 40},
+      boardSize: {x: 9, y: 10},
       newBoard: [],
       test: '',
       generation: 0
@@ -19,10 +19,15 @@ var MainContainer = React.createClass({
   },
   createBoardArray: function(x, y) {
     var board = [];
+    var coordinates = {};
     var count = 1;
-    for (var i = 0; i <= y; i++) {
+    for (var i = 0; i < y; i++) {
       for (var j = 0; j <= x; j++) {
-        board.push(<Box id={count} key={count++}/>)
+        coordinates = {
+          x: j,
+          y: i
+        }
+        board.push(<Box id={count} key={count++} coordinates={coordinates}/>)
       }
     }
     return board
@@ -55,6 +60,7 @@ var Box = React.createClass({
   changeStatus: function() {
     if (this.state.status == 'dead') { this.setState({ newClass: 'box alive', status: 'alive'}) }
     else { this.setState({ newClass: 'box dead', status: 'dead' }) };
+    console.log(this.props.coordinates)
   },
   render: function() {
     return (
