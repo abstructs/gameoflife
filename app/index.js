@@ -61,10 +61,29 @@ var Box = React.createClass({
     if (this.state.status == 'dead') { this.setState({ newClass: 'box alive', status: 'alive'}) }
     else { this.setState({ newClass: 'box dead', status: 'dead' }) };
 
+    //check if cell is alive (only calculates neighbors of alive cells)
+
+    //calculate neighors and determine whether cell will be alive or dead
+    var leftNeighbor = $('#' + this.props.coordinates.y + (parseInt(this.props.coordinates.x) - 1).toString()).attr('class').split(' ');
+    var rightNeigbhor = $('#' + this.props.coordinates.y + (parseInt(this.props.coordinates.x) + 1).toString()).attr('class').split(' ');
+    var topNeighbor = $('#' + (parseInt(this.props.coordinates.y) - 1).toString() + this.props.coordinates.x).attr('class').split(' ');
+    var bottomNeighbor = $('#' + (parseInt(this.props.coordinates.y) + 1).toString() + this.props.coordinates.x).attr('class').split(' ');
+
+    var topRightNeighor = $('#' + (parseInt(this.props.coordinates.y) - 1).toString() + (parseInt(this.props.coordinates.x) + 1).toString()).attr('class').split(' ');
+    var topLeftNeighor = $('#' + (parseInt(this.props.coordinates.y) - 1).toString() + (parseInt(this.props.coordinates.x) - 1).toString()).attr('class').split(' ');
+    var bottomRightNeighor = $('#' + (parseInt(this.props.coordinates.y) + 1).toString() + (parseInt(this.props.coordinates.x) + 1).toString()).attr('class').split(' ');
+    var bottomLeftNeighor = $('#' + (parseInt(this.props.coordinates.y) + 1).toString() + (parseInt(this.props.coordinates.x) - 1).toString()).attr('class').split(' ');
+    // array to check the "score" of the alive cell
+    var scoreCheck = [];
+
+
+
   },
+
   render: function() {
-    return (
-      <div id={this.props.coordinates.x.toString() + this.props.coordinates.y.toString()} className={this.state.newClass} onClick={this.changeStatus}></div>
+    return ( // sets id to the value of y and x for that block, helps keep track of where each block is
+      // the goal here was to make each block able to manage itself
+      <div id={this.props.coordinates.y.toString() + this.props.coordinates.x.toString()} className={this.state.newClass} onClick={this.changeStatus}></div>
     )
   }
 });
