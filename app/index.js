@@ -27,7 +27,7 @@ var MainContainer = React.createClass({
           x: j,
           y: i
         }
-        board.push(<Box id={count} key={count++} coordinates={coordinates}/>)
+        board.push(<Box key={count++} coordinates={coordinates}/>)
       }
     }
     return board
@@ -60,11 +60,11 @@ var Box = React.createClass({
   changeStatus: function() {
     if (this.state.status == 'dead') { this.setState({ newClass: 'box alive', status: 'alive'}) }
     else { this.setState({ newClass: 'box dead', status: 'dead' }) };
-    console.log(this.props.coordinates)
+
   },
   render: function() {
     return (
-      <div className={this.state.newClass} onClick={this.changeStatus}></div>
+      <div id={this.props.coordinates.x.toString() + this.props.coordinates.y.toString()} className={this.state.newClass} onClick={this.changeStatus}></div>
     )
   }
 });
