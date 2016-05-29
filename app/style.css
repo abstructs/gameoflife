@@ -1,0 +1,22 @@
+.box {
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  border-color: white;
+  margin: 0px;
+  float: left;
+  border: 1px solid;
+
+}
+#main-grid {
+  height: 500px;
+  width: 500px;
+  text-align: center;
+}
+.container {
+  margin-left: 400px;
+  margin-right: 400px;
+}
+.alive {
+  background-color: red;
+}
